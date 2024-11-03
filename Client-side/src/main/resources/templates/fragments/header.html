@@ -1,0 +1,58 @@
+        <div th:fragment="header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="background-color: rgba(0, 0, 0, .5) !important; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    	backdrop-filter: blur(6.6px);
+    	-webkit-backdrop-filter: blur(6.6px);">
+                <div class="navbar-brand"><a aria-current="page" class="active" href="/"
+                        style="text-decoration: none;"><img
+                            src="https://th.bing.com/th/id/OIG1.OoDdjGDueBq0YWp2M1fP?w=1024&h=1024&rs=1&pid=ImgDetMain"
+                            alt="logo"><span class="text-logo">Uni Movie</span></a></div>
+                <div class="header__mobile">
+                    <div class="header__login" style="display: flex;" th:if="${session.jwtResponse != null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/account/profile}"><img
+                                src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text" th:text="${session.jwtResponse.name}"></span></a>
+                        <a style="background: #ffc107;" class="btn"  th:href="@{/sign-out}">Logout</a>
+                    </div>
+                    <div class="header__login" style="display: flex;" th:if="${session.jwtResponse == null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/login}"><img
+                                src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text">Login</span></a>
+                    </div>
+                </div><button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active"><a aria-current="page" class="nav-link active" href="/">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-film"></i><span>Home</span></div>
+                            </a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/branches}">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-project-diagram"></i><span>Branches</span></div>
+                            </a></li> 
+                        <li class="nav-item"><a aria-current="page" class="nav-link active" th:href="@{/movies}">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-mobile"></i><span>Movies</span>
+                                </div>
+                            </a></li>
+                        <li class="nav-item" th:if="${session.admin}">
+                        	<a aria-current="page" class="nav-link active" th:href="@{/admin}">
+                                <div class="d-flex flex-column"><i class="mb-2 fa fa-mobile"></i>
+                                <span >Manage Site</span>
+                                </div>
+                            </a>
+                         </li>
+                    </ul>
+                    <div class="header__login" th:if="${session.jwtResponse != null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/account/profile}">
+                        <img src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text" th:text="${session.jwtResponse.name}"></span></a>
+                        <a style="background: #ffc107;" class="btn" th:href="@{/sign-out}">Logout</a>
+                    </div>
+                    <div class="header__login"  th:if="${session.jwtResponse == null}">
+                        <a class="login__link" aria-haspopup="true" style="cursor: pointer;" th:href="@{/login}"><img
+                                src="https://i.ibb.co/PCjW83Y/avt.png" alt="user"><span
+                                class="login__text">Login</span></a>
+                    </div>
+                    
+                </div>
+            </nav>
+        </div>
